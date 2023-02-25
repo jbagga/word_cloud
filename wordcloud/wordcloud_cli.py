@@ -87,9 +87,10 @@ class RegExpAction(argparse.Action):
 
 def main(args, text, imagefile):
     wordcloud = wc.WordCloud(**args)
-    wordcloud.generate(text)
+    result_svg = wordcloud.generate(text).to_svg(embed_font = True)
+    print(result_svg)
     image = wordcloud.to_image()
-
+    
     with imagefile:
         image.save(imagefile, format='png', optimize=True)
 
